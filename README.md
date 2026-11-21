@@ -186,9 +186,17 @@ password. They open the URL, enter the password, and see the file as text.
 | `FILE` / `$1` | `/root/all.txt`           | file to upload                       |
 | `PB_URL`      | `https://privatebin.net`  | any PrivateBin instance              |
 | `PB_PASSWORD` | (random, 20 chars)        | paste password                       |
-| `PB_EXPIRE`   | `1week`                   | `5min`/`1hour`/`1day`/`1week`/`1month`/`1year`/`never` |
+| `PB_EXPIRE`   | `3day`                    | `5min`/`10min`/`30min`/`3hour`/`6hour`/`12hour`/`1day`/`3day` (max on privatebin.net) |
 | `PB_BURN`     | `0`                       | `1` = delete after first read        |
 | `PB_VENV`     | `$HOME/.pbshare-venv`     | python venv location                 |
+
+## How long is the paste stored?
+
+The script prints `TTL_HUMAN` — the **actual** storage time the instance
+assigned. On `https://privatebin.net` the maximum is **3 days** (`3day`). If you
+request a value the instance does not support, it silently falls back to ~1 hour;
+the script now detects that and prints a `WARN=` line. For longer storage,
+self-host PrivateBin or pick an instance with a higher maximum.
 
 ## Account needed?
 
